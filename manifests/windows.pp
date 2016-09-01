@@ -5,8 +5,22 @@ class base::windows () inherits base {
 
   include profile::windows::timezone
 
-   notify { "PROXY: ${base::proxy_server}": }
+  notify { "PROXY: ${base::proxy_server}": }
 
+  ini_setting { 'report':
+    ensure   => present,
+    path     => 'C:/ProgramData/PuppetLabs/puppet/etc/puppet.conf',
+    section  => 'main',
+    setting  => 'report',
+    value    => 'true',
+  }
+
+  windows_env {'http_proxy':
+    ensure    => present,
+    variable  => 'http_proxy',
+    value     => $base::proxy_server,
+    mergemode => clobber,
+  }
 
   windows_env {'https_proxy':
     ensure    => present,
@@ -23,5 +37,7 @@ class base::windows () inherits base {
     }
 
   }
+
+  class { windows::chocolatey :  }
 
 }
