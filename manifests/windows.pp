@@ -40,4 +40,10 @@ class base::windows () inherits base {
 
   class { windows::chocolatey :  }
 
+  class { octopus:
+    server_url => $params::octopus_server_url,
+    ensure      => 'present',
+    require     => Class[windows::chocolatey],
+  }
+
 }

@@ -2,9 +2,7 @@
 #
 # @author Dan
 class base (
-  $proxy_server = $base::params::proxy_server,
-  $proxy_exclusions = $base::params::proxy_exclusions,
-) inherits base::params {
-
-
-}
+  $proxy_server       = $base::params::proxy_server,
+  $proxy_exclusions   = $base::params::proxy_exclusions,
+  $octopus_server_url = $base::params::octopus_server_url
+) inherits base::params {}
