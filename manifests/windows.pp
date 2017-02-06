@@ -71,6 +71,8 @@ class base::windows () inherits base {
 
   class { windows::chocolatey :  }
 
+  include profile::windows::software::nsclient
+
   class { octopus:
     server_url => $base::octopus_server_url,
     ensure      => 'present',
