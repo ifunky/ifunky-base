@@ -41,7 +41,6 @@ class base::windows () inherits base {
     command   => 'Enable-PSRemoting -force',
     provider  => powershell,
     onlyif    => "if((Get-ChildItem WSMan:\\localhost\\Listener -recurse | where {\$_.pschildname -contains 'Enabled'}).Value.CompareTo('${$base::powershell_remote_enabled}') -eq 0) { exit 1 } else { exit 0 }",
-    require   => Exec['Enable PowerShell in x64'],
     logoutput => true,
   }
 
