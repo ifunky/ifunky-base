@@ -15,28 +15,6 @@ class base::windows () inherits base {
     value    => 'true',
   }
 
-  windows_env {'http_proxy':
-    ensure    => present,
-    variable  => 'http_proxy',
-    value     => $base::proxy_server,
-    mergemode => clobber,
-  }
-
-  windows_env {'https_proxy':
-    ensure    => present,
-    variable  => 'https_proxy',
-    value     => $base::proxy_server,
-    mergemode => clobber,
-  }
-
-  if (!empty($base::proxy_exclusions)){
-    windows_env { 'no_proxy':
-      ensure    => present,
-      value     => $base::proxy_exclusions,
-      mergemode => clobber,
-    }
-  }
-
   exec { 'Enable Powershell Remoting':
     command   => 'Enable-PSRemoting -force',
     provider  => powershell,
@@ -68,6 +46,10 @@ class base::windows () inherits base {
     refreshonly => true,
   }
 
+  class { windows::proxysettings :
+    proxy_server      => $base::proxy_server,
+    proxy_exclusions  => $base::proxy_exclusions
+  }
 
   class { windows::chocolatey :  }
   class { windows::machineconfig :  }
