@@ -70,6 +70,7 @@ class base::windows () inherits base {
 
 
   class { windows::chocolatey :  }
+  class { windows::machineconfig :  }
 
   include profile::windows::software::nsclient
 
