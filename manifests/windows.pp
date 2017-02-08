@@ -55,6 +55,7 @@ class base::windows () inherits base {
   class { windows::machineconfig :  }
 
   include profile::windows::software::nsclient
+  include ::profile::windows::software::filebeat
 
   class { octopus:
     server_url => $base::octopus_server_url,
