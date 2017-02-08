@@ -3,7 +3,7 @@
 # @author Dan
 class base::windows () inherits base {
 
-  include profile::windows::timezone
+  include ::profile::windows::timezone
 
   notify { "PROXY: ${base::proxy_server}": }
 
@@ -54,8 +54,7 @@ class base::windows () inherits base {
   class { windows::chocolatey :  }
   class { windows::machineconfig :  }
 
-  include profile::windows::software::nsclient
-  include ::profile::windows::software::filebeat
+  include ::profile::windows::software::nsclient
 
   class { octopus:
     server_url => $base::octopus_server_url,
