@@ -5,8 +5,6 @@ class base::windows () inherits base {
 
   include ::profile::windows::timezone
 
-  notify { "PROXY: ${base::proxy_server}": }
-
   ini_setting { 'report':
     ensure   => present,
     path     => 'C:/ProgramData/PuppetLabs/puppet/etc/puppet.conf',
