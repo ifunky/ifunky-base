@@ -56,10 +56,10 @@ class base::windows () inherits base {
 
   include ::profile::windows::software::nsclient
 
-  class { octopus:
-    server_url => $base::octopus_server_url,
-    ensure      => 'present',
-    require     => Class[windows::chocolatey],
-  }
+  #class { octopus:
+  #  server_url => $base::octopus_server_url,
+  #  ensure      => 'present',
+  #  require     => Class[windows::chocolatey],
+  #}
 
 }
