@@ -13,6 +13,12 @@ class base::windows () inherits base {
     value    => 'true',
   }
 
+  service { 'puppet':
+    ensure   => stopped,
+    enable   => false,
+  }
+
+
   exec { 'Enable Powershell Remoting':
     command   => 'Enable-PSRemoting -force',
     provider  => powershell,
